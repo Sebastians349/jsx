@@ -1,32 +1,26 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import faker from "faker";
 
-class App extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = { lat: null, errorMessage: "" };
-
-    window.navigator.geolocation.getCurrentPosition(
-      (position) => {
-        this.setState({ lat: position.coords.latitude });
-      },
-      (err) => {
-        this.setState({ errorMessage: err.message });
-      }
-    );
-  }
-
-  // React says we have to define render!!
-  render() {
-    return (
-      <div>
-        Latitude: {this.state.lat}
-        <br />
-        Error: {this.state.errorMessage}
+const App = () => {
+  return (
+    <div className="ui container comments">
+      <div className="comment">
+        <a href="/" className="avatar">
+          <img alt="avatar" src={faker.image.avatar()} />
+        </a>
+        <div className="content"></div>
+          <a href="/" className="author">
+            Sam
+          </a>
+          <div className="metadata">
+            <span className="date">Today at 6:00PM</span>
+          </div>
+          <div className="text">Nice blog post!</div>
+        </div>
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
 
 ReactDOM.render(<App />, document.querySelector("#root"));
